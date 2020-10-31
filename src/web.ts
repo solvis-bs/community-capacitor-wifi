@@ -25,7 +25,8 @@ export class WifiWeb extends WebPlugin implements WifiPlugin {
     console.log(options);
     return { ssid: null };
   }
-  async disconnect(): Promise<void> {
+  async disconnect(options: { ssid: string }): Promise<void> {
+    console.log(options);
     return;
   }
 }

@@ -170,8 +170,17 @@ public class Wifi: CAPPlugin {
     }
 
     @objc func disconnect(_ call: CAPPluginCall) {
-        //TODO Should be able to disconnect if we added it
-        call.reject("ERROR_DISCONNECT_NOT_SUPPORTED");
+        guard let ssid = call.options["ssid"] as? String else {
+            call.reject("ERROR_SSID_REQUIRED")
+            return
+        }
+
+        if #available(iOS 11, *) {
+            NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: ssid)
+            call.success()
+        } else {
+            call.reject("ERROR_ONLY_SUPPORTED_IOS_11")
+        }
     }
 
     @objc func getWiFiAddress() -> String? {
