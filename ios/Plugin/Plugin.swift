@@ -105,7 +105,7 @@ public class Wifi: CAPPlugin {
             } else {
                 configuration = NEHotspotConfiguration.init(ssid: ssid)
             }
-            configuration.joinOnce = false
+            configuration.joinOnce = true
 
             NEHotspotConfigurationManager.shared.apply(configuration) { (error) in
                 if error != nil {
@@ -144,7 +144,7 @@ public class Wifi: CAPPlugin {
             } else {
                 configuration = NEHotspotConfiguration.init(ssidPrefix: ssid)
             }
-            configuration.joinOnce = false
+            configuration.joinOnce = true
 
             NEHotspotConfigurationManager.shared.apply(configuration) { (error) in
                 if error != nil {
